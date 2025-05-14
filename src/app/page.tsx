@@ -75,6 +75,7 @@ export default function Home() {
   };
 
   useEffect(() => {
+    console.log("UseEffect Running")
     const fetchData = async () => {
       setLoading(true);
       setError(null);
