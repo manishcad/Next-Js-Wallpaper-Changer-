@@ -12,6 +12,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formattedQuery = query.trim().replace(/ /g, '-');
+    console.log(formattedQuery,"this is the search item")
     setQuery(formattedQuery);
     onSearch(formattedQuery);
   };

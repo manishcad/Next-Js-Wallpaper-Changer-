@@ -24,7 +24,7 @@ export default function Home() {
     setCurrentQuery(query);
     setPage(pageNumber);
     try {
-      const response = await fetch(`/api/wallpapers?query=${encodeURIComponent(query)}&page=${pageNumber}`);
+      const response = await fetch(`/api/images?query=${encodeURIComponent(query)}&page=${pageNumber}`);
       if (!response.ok) throw new Error('Failed to fetch wallpapers');
       const data = await response.json();
 
@@ -75,13 +75,12 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log("UseEffect Running")
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
 
-        const response = await fetch(`/api/wallpapers?query=${encodeURIComponent(currentQuery)}&page=${page}`);
+        const response = await fetch(`/api/images?query=${encodeURIComponent(currentQuery)}&page=${page}`);
         if (!response.ok) throw new Error('Failed to fetch wallpapers');
   
         const data = await response.json();
