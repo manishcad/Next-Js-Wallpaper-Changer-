@@ -33,7 +33,10 @@ const defaultHeaders = {
   'Sec-Fetch-Dest': 'document',
   'Sec-Fetch-Mode': 'navigate',
   'Sec-Fetch-Site': 'none',
-  'Sec-Fetch-User': '?1'
+  'Sec-Fetch-User': '?1',
+  'Referer': 'https://www.google.com/', // Simulate coming from a search engine
+  'DNT': '1', // Do Not Track
+  'TE': 'Trailers', // Indicates support for trailers
 };
 
 export async function GET(request: Request) {
@@ -41,6 +44,7 @@ export async function GET(request: Request) {
   const queryRaw = searchParams.get('query');
   const query = queryRaw?.replace(/ /g, '-') || '';
   const page = parseInt(searchParams.get('page') || '1');
+  
   if (!query) {
     return NextResponse.json({ error: 'Query parameter is required' }, { status: 400 });
   }
@@ -60,7 +64,8 @@ export async function GET(request: Request) {
     console.log('Got cookies:', cookies ? 'Yes' : 'No');
 
     // Add a small delay to avoid rate limiting
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    const randomDelay = Math.floor(Math.random() * 5000) + 1000; // 1-6 seconds
+    await new Promise(resolve => setTimeout(resolve, randomDelay));
 
     // Now search for wallpapers
     const searchUrl = `https://www.freepik.com/free-photos-vectors/${encodeURIComponent(query)}/${page}`
