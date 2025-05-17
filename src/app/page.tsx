@@ -80,7 +80,7 @@ export default function Home() {
       setError(null);
       try {
 
-        const response = await fetch(`/api/images?query=${encodeURIComponent(currentQuery)}&page=${page}`);
+        const response = await fetch(`/api/wallpapers?query=${encodeURIComponent(currentQuery)}&page=${page}`);
         if (!response.ok) throw new Error('Failed to fetch wallpapers');
   
         const data = await response.json();

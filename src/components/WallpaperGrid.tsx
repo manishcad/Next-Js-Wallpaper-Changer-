@@ -52,25 +52,29 @@ export default function WallpaperGrid({ wallpapers,onSetWallpaper }: WallpaperGr
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={wallpaper.id <= 3}
             />
-            <div className="absolute inset-0 bg-opacity-0 hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
-        `           <a
-                        href={`/api/download?url=${encodeURIComponent(wallpaper.url)}`}
-                        className="opacity-0 hover:opacity-100 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300"
-                      >`
-                           Download
-                    </a>
-                    <button
-                  onClick={() => handleSetWallpaper(wallpaper.url, wallpaper.id)}
-                  disabled={isSetting === wallpaper.id}
-                  className={`opacity-0 hover:opacity-100 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300 ${
-                    isSetting === wallpaper.id ? 'opacity-100 cursor-not-allowed' : ''
-                  }`}
-                >
-                  {isSetting === wallpaper.id ? 'Setting...' : 'Set as Wallpaper'}
-                </button>
+      <div className="absolute inset-0 flex items-center justify-center  bg-opacity-30">
+        <div className="flex flex-col gap-2 p-2 md:p-4">
+          <button
+            onClick={() => handleSetWallpaper(wallpaper.url, wallpaper.id)}
+            disabled={isSetting === wallpaper.id}
+            className={`bg-blue-600 text-white text-sm md:text-base px-3 py-2 rounded-md ${
+              isSetting === wallpaper.id ? 'cursor-not-allowed opacity-70' : ''
+            }`}
+          >
+            {isSetting === wallpaper.id ? 'Setting...' : 'Set as Wallpaper'}
+          </button>
 
-            </div>
-          </div>
+          <a
+             href={`/api/download?url=${encodeURIComponent(wallpaper.url)}`}
+            download
+            className="bg-green-600 text-white text-sm md:text-base px-3 py-2 rounded-md text-center"
+          >
+            Download
+          </a>
+    </div>
+  </div>
+</div>
+
           <div className="p-4">
             <h3 className="text-lg font-semibold truncate">{wallpaper.title}</h3>
             <p className="text-sm text-gray-600">By {wallpaper.author}</p>
