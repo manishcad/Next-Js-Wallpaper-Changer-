@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (error) {
+    console.log(error)
     return new Response('Error downloading image', { status: 500 });
   }
 }
