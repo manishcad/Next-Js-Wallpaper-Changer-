@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-export default function WallpaperCard({ wallpaper, onSetWallpaper }) {
+export default function WallpaperCard({ wallpaper }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -14,7 +14,7 @@ export default function WallpaperCard({ wallpaper, onSetWallpaper }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 hover:shadow-xl">
       <div className="relative aspect-video">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -50,12 +50,13 @@ export default function WallpaperCard({ wallpaper, onSetWallpaper }) {
           >
             View Details
           </a>
-          <button
-            onClick={() => onSetWallpaper(wallpaper.url)}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+          <a
+            href={wallpaper.url}
+            download
+            className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-4 py-2 rounded shadow hover:shadow-lg hover:from-purple-600 hover:to-indigo-700 transition-all duration-200"
           >
-            Set as Wallpaper
-          </button>
+            Download
+          </a>
         </div>
       </div>
     </div>

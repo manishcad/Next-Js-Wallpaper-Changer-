@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import SearchBar from '@/components/SearchBar';
 import WallpaperGrid from '@/components/WallpaperGrid';
-
+import Link from 'next/link';
 interface Wallpaper {
   id: number;
   url: string;
@@ -64,7 +64,7 @@ export default function Home() {
       });
 
       if (response.ok) {
-        alert('Wallpaper set successfully!');
+        alert('This function is not working correctly am trying to fix it!');
       } else {
         throw new Error('Failed to set wallpaper');
       }
@@ -80,7 +80,7 @@ export default function Home() {
       setError(null);
       try {
 
-        const response = await fetch(`/api/images?query=${encodeURIComponent(currentQuery)}&page=${page}`);
+        const response = await fetch(`/api/wallpapers?query=${encodeURIComponent(currentQuery)}&page=${page}`);
         if (!response.ok) throw new Error('Failed to fetch wallpapers');
   
         const data = await response.json();
@@ -111,7 +111,7 @@ export default function Home() {
     <main className="min-h-screen p-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
       <h1 className="text-5xl font-extrabold text-center mb-10 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text tracking-wide drop-shadow-md">
-  Find Your Perfect Wallpaper
+  <Link href="/">Find Your Perfect Wallpaper</Link>
 </h1>
 
         <SearchBar onSearch={(query) => handleSearch(query, 1)} />
